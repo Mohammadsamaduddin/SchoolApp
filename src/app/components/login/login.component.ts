@@ -16,7 +16,7 @@ export class LoginComponent {
       }
     )
   }
-  login() {
+  submit() {
     console.log(this.loginform.value);
 
   }
