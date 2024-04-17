@@ -41,6 +41,29 @@
 
         </div>
 
+        <div formArrayName="educations">
+            <div *ngFor="let education of educationFormArray.controls, let i= index">
+                <div formGroupName="{{i}}">
+                    <h1>Education:{{i+1}}</h1>
+
+                    <label for="">Number:</label>
+                    <input type="number" formControlName="number">
+                    <br>
+
+                    <label for="">Cvv:</label>
+                    <input type="number" formControlName="cvv">
+                    <br>
+
+                    <label for="">Expiry:</label>
+                    <input type="number" formControlName="expiry">
+                    <br>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" (click)="addEducation()">Add Education</button>
+
         <button class="btn btn-info" (click)="onSubmit()">Submit</button>
 
     </form>
