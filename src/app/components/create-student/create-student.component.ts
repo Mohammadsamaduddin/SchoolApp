@@ -46,6 +46,11 @@ export class CreateStudentComponent {
       )
     )
   }
+
+  onDelete(i:number){
+   this.educationFormArray.removeAt(i);
+  }
+
   onSubmit() {
     console.log(this.studentform.value);
   }
