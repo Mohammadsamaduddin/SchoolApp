@@ -18,8 +18,8 @@ export class LoginComponent {
       }
     )
   }
-  submit() {
-    this._loginService.login(this.loginform.value).subscribe(
+  onSubmit() {
+    this._loginService.logIn(this.loginform.value).subscribe(
       (data:any)=>{
         localStorage.setItem("token",data.token);
         this._router.navigateByUrl("/dashboard");
