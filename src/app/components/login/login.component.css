@@ -1,25 +1,32 @@
-.parent{
+.parent {
     height: 100vh;
     width: 100vw;
     background-color: deepskyblue;
 }
 
-.login-container{
-    height: 45%;
-    width: 30%;
+.login-container {
+    padding-top: 30px;
+    height: 350px;
+    width: 350px;
     background-color: white;
-    padding: 20px;
     border-radius: 15px;
 
 }
-label{
-    width: 100px;
-    margin: 20px;
+
+.error {
+    color: red;
 }
-.text-center{
+
+label {
+    width: 100px;
+    padding: 20px;
+}
+
+.text-center {
     text-align: center;
 }
-.flex-center{
+
+.flex-center {
     display: flex;
     align-items: center;
     justify-content: center;

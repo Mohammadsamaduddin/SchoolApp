@@ -2,17 +2,25 @@
     <div class="login-container">
         <h1 class="text-center">Login</h1>
 
-        <label for="">Email</label>
-        <input type="text">
-        <br>
+        <form [formGroup]="loginform">
+            <label for="">Email</label>
+            <input type="email" formControlName="email">
+            <div *ngIf="loginform.get('email')?.touched">
+                <p class="error" *ngIf="loginform.get('email')?.errors?.['required']">Email required</p>
+            </div>
+            <br>
 
-        <label for="">Password</label>
-        <input type="password">
-        <br>
+            <label for="">Password</label>
+            <input type="password" formControlName="password">
+            <div *ngIf="loginform.get('password')?.touched">
+                <p class="error" *ngIf="loginform.get('password')?.errors?.['required']">Password required</p>
+            </div>
+            <br>
 
-        <div class="text-center">
-            <button class="btn btn-success">Login</button>
+            <div class="text-center">
+                <button class="btn btn-success" (click)="login()">Login</button>
 
-        </div>
+            </div>
+        </form>
     </div>
 </div>
