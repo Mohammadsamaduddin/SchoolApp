@@ -22,6 +22,25 @@
         <input type="number" formControlName="batch">
         <br>
 
+        <div formGroupName="address">
+            <label for="">City:</label>
+            <input type="text" formControlName="city">
+            <br>
+
+            <label for="">District:</label>
+            <input type="text" formControlName="district">
+            <br>
+
+            <label for="">State:</label>
+            <input type="text" formControlName="state">
+            <br>
+
+            <label for="">Pin:</label>
+            <input type="number" formControlName="pin">
+            <br>
+
+        </div>
+
         <button class="btn btn-info" (click)="onSubmit()">Submit</button>
 
     </form>

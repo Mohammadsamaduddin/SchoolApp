@@ -15,13 +15,23 @@ export class CreateStudentComponent {
         gender: new FormControl(),
         mobile: new FormControl(),
         email: new FormControl(),
-        batch: new FormControl()
+        batch: new FormControl(),
+        address: new FormGroup(
+          {
+            city: new FormControl(),
+            district: new FormControl(),
+            state: new FormControl(),
+            pin: new FormControl(),
+          }
+        )
       }
     )
   }
 
-  onSubmit(){
+
+  onSubmit() {
     console.log(this.studentform.value);
-    
+
   }
 }
+
