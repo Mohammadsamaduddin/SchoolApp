@@ -4,39 +4,81 @@
     <form [formGroup]="studentform">
         <label for="">Name:</label>
         <input type="text" formControlName="name">
+        <div *ngIf="studentform.get('name')?.touched">
+            <p class="error" *ngIf="studentform.get('name')?.errors?.['required']">Name required</p>
+        </div>
         <br>
 
         <label for="">Gender:</label>
-        <input type="text" formControlName="gender">
+        <div *ngIf="studentform.get('gender')?.touched">
+            <p class="error" *ngIf="studentform.get('gender')?.errors?.['required']">Gender required</p>
+        </div>
+        <input type="radio" value="female" formControlName="gender">
+        <label for="">Female</label>
+
+        <input type="radio" value="male" formControlName="gender">
+        <label for="">Male</label>
         <br>
 
         <label for="">Mobile:</label>
         <input type="number" formControlName="mobile">
+        <div *ngIf="studentform.get('mobile')?.touched">
+            <p class="error" *ngIf="studentform.get('mobile')?.errors?.['required']">Mobile required</p>
+            <p class="error" *ngIf="studentform.get('mobile')?.errors?.['min']">Mobile number should be 10 digits</p>
+            <p class="error" *ngIf="studentform.get('mobile')?.errors?.['max']">Mobile number above 10 digits not
+                allowed</p>
+
+        </div>
         <br>
 
         <label for="">Email:</label>
         <input type="email" formControlName="email">
+        <div *ngIf="studentform.get('email')?.touched">
+            <p class="error" *ngIf="studentform.get('email')?.errors?.['required']">Email required</p>
+        </div>
         <br>
 
         <label for="">Batch</label>
-        <input type="number" formControlName="batch">
+        <input type="date" formControlName="batch">
+        <div *ngIf="studentform.get('batch')?.touched">
+            <p class="error" *ngIf="studentform.get('batch')?.errors?.['required']">Batch required</p>
+        </div>
         <br>
 
         <div formGroupName="address">
+            <h3>Address:</h3>
             <label for="">City:</label>
             <input type="text" formControlName="city">
             <br>
 
+            <label for="">Mandal:</label>
+            <input type="text" formControlName="mandal">
+            <br>
+
             <label for="">District:</label>
             <input type="text" formControlName="district">
+            <div *ngIf="studentform.get('address')?.get('district')?.touched">
+                <p class="error" *ngIf="studentform.get('address')?. get('district')?.errors?.['required']">District
+                    mandatory</p>
+
+            </div>
             <br>
 
             <label for="">State:</label>
             <input type="text" formControlName="state">
             <br>
 
-            <label for="">Pin:</label>
-            <input type="number" formControlName="pin">
+            <label for="">Pin code:</label>
+            <input type="number" formControlName="pincode">
+            <div *ngIf="studentform.get('address')?.get('pincode')?.touched">
+                <p class="error" *ngIf="studentform.get('address')?. get('pincode')?.errors?.['required']">Pincode
+                    mandatory</p>
+                <p class="error" *ngIf="studentform.get('address')?. get('pincode')?.errors?.['min']">Pin code should be
+                    6 numbers</p>
+                <p class="error" *ngIf="studentform.get('address')?. get('pincode')?.errors?.['max']">Pincode above 6
+                    numbers not allowed</p>
+
+            </div>
             <br>
 
         </div>
@@ -60,6 +102,15 @@
 
                     <label for="">Percentage:</label>
                     <input type="number" formControlName="percentage">
+                    <div *ngIf="educationFormArray.controls[i]?.get('percentage')?.touched">
+                        <p class="error"
+                            *ngIf="educationFormArray.controls[i]?.get('percentage')?.errors?.['required']">% required
+                        </p>
+                        <p class="error" *ngIf="educationFormArray.controls[i]?.get('percentage')?.errors?.['min']">
+                            Minimum 1</p>
+                        <p class="error" *ngIf="educationFormArray.controls[i]?.get('percentage')?.errors?.['max']">
+                            Maximum 100</p>
+                    </div>
                     <br>
 
                     <button class="btn btn-danger" (click)="onDelete(i)">Delete</button>
@@ -98,9 +149,9 @@
 
         <div *ngIf="studentform.get('sourcetype')?.value=='direct'">
             <label for="">Source from:</label>
-            <input type="radio" value="socialmedia"  formControlName="sourcefrom">
+            <input type="radio" value="socialmedia" formControlName="sourcefrom">
             <label for="">Social media:</label>
-            <input type="radio" value="office"  formControlName="sourcefrom">
+            <input type="radio" value="office" formControlName="sourcefrom">
             <label for="">Office:</label>
             <br>
         </div>
@@ -111,7 +162,8 @@
             <br>
         </div>
 
-        <button style="margin-top: 20px;" class="btn btn-info" (click)="onSubmit()">Submit</button>
+        <button [disabled]="studentform.invalid" style="margin-top: 20px;" class="btn btn-info"
+            (click)="onSubmit()">Submit</button>
 
     </form>
 </div>
