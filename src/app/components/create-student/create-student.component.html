@@ -41,23 +41,27 @@
 
         </div>
 
+        <div>
+            <button style="margin-bottom: 20px;" class="btn btn-primary" (click)="addEducation()">Add Education</button>
+        </div>
+
         <div formArrayName="educations">
             <div *ngFor="let education of educationFormArray.controls, let i= index">
                 <div formGroupName="{{i}}">
                     <h1>Education:{{i+1}}</h1>
 
-                    <label for="">Number:</label>
-                    <input type="number" formControlName="number">
+                    <label for="">Qualification:</label>
+                    <input type="text" formControlName="qualification">
                     <br>
 
-                    <label for="">Cvv:</label>
-                    <input type="number" formControlName="cvv">
+                    <label for="">Year:</label>
+                    <input type="number" formControlName="year">
                     <br>
 
-                    <label for="">Expiry:</label>
-                    <input type="number" formControlName="expiry">
+                    <label for="">Percentage:</label>
+                    <input type="number" formControlName="percentage">
                     <br>
-                    
+
                     <button class="btn btn-danger" (click)="onDelete(i)">Delete</button>
 
                     <hr>
@@ -65,9 +69,29 @@
             </div>
         </div>
 
-        <button class="btn btn-primary" (click)="addEducation()">Add Education</button>
+        <div formGroupName="company">
+            <h3>Company:</h3>
+            <label for="">Name:</label>
+            <input type="text" formControlName="name">
+            <br>
 
-        <button class="btn btn-info" (click)="onSubmit()">Submit</button>
+            <label for="">Location:</label>
+            <input type="text" formControlName="location">
+            <br>
+
+            <label for="">Package:</label>
+            <input type="number" formControlName="package">
+            <br>
+
+            <label for="">Offerdate:</label>
+            <input type="date" formControlName="offerdate">
+            <br>
+
+
+        </div>
+
+
+        <button style="margin-top: 20px;" class="btn btn-info" (click)="onSubmit()">Submit</button>
 
     </form>
 </div>
