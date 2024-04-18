@@ -6,6 +6,9 @@ label {
     width: 100px;
     margin-bottom: 20PX;
 }
+.error{
+    color: red;
+}
 
 button{
     margin-right: 30px;
