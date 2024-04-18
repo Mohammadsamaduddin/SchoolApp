@@ -88,13 +88,28 @@
             <br>
         </div>
 
-        <label for="">Source Type:</label>
-
-        <input type="radio" value="direct" formControlName="souceType" >
+        <label for="">Sourcetype:</label>
+        <input type="radio" formControlName="sourcetype" value="direct">
         <label for="">Direct</label>
-
-        <input type="radio" value="referral" formControlName="souceType">
+        <input type="radio" formControlName="sourcetype" value="referral">
         <label for="">Referral</label>
+
+        <br>
+
+        <div *ngIf="studentform.get('sourcetype')?.value=='direct'">
+            <label for="">Source from:</label>
+            <input type="radio" value="socialmedia"  formControlName="sourcefrom">
+            <label for="">Social media:</label>
+            <input type="radio" value="office"  formControlName="sourcefrom">
+            <label for="">Office:</label>
+            <br>
+        </div>
+
+        <div *ngIf="studentform.get('sourcetype')?.value=='referral'">
+            <label for="">Referral Name:</label>
+            <input type="text" formControlName="referralname">
+            <br>
+        </div>
 
         <button style="margin-top: 20px;" class="btn btn-info" (click)="onSubmit()">Submit</button>
 
