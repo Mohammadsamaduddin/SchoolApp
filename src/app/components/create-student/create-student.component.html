@@ -86,10 +86,15 @@
             <label for="">Offerdate:</label>
             <input type="date" formControlName="offerdate">
             <br>
-
-
         </div>
 
+        <label for="">Source Type:</label>
+
+        <input type="radio" value="direct" formControlName="souceType" >
+        <label for="">Direct</label>
+
+        <input type="radio" value="referral" formControlName="souceType">
+        <label for="">Referral</label>
 
         <button style="margin-top: 20px;" class="btn btn-info" (click)="onSubmit()">Submit</button>
 
