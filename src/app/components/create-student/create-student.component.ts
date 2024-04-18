@@ -26,7 +26,16 @@ export class CreateStudentComponent {
                 pin: new FormControl()
               }
             ),
-          educations: new FormArray([])
+          educations: new FormArray([]),
+          company : new FormGroup(
+            {
+              name : new FormControl(),
+              location : new FormControl(),
+              package : new FormControl(),
+              offerdate : new FormControl()
+
+            }
+          )
         }
       )
 
@@ -39,9 +48,9 @@ export class CreateStudentComponent {
     this.educationFormArray.push(
       new FormGroup(
         {
-          number : new FormControl(),
-          cvv : new FormControl(),
-          expiry : new FormControl()
+          qualification : new FormControl(),
+          year : new FormControl(),
+          percentage : new FormControl()
         }
       )
     )
