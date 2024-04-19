@@ -1,15 +1,31 @@
-<select  [(ngModel)]="pageNo" (change)="pageChange()">
+<label for="">Pagination:</label>
+<select [(ngModel)]="pageNo" (change)="pageChange()">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
     <option value="4">4</option>
-    <option value="5">5</option> 
+    <option value="5">5</option>
 </select>
+
+<label for="">Column:</label>
+<select [(ngModel)]="column">
+    <option value="name">Name</option>
+    <option value="email">Email</option>
+</select>
+
+<label for="">Order:</label>
+<select [(ngModel)]="order">
+    <option value="asc">Ascending</option>
+    <option value="desc">Descending</option>
+</select>
+
+<button (click)="sortChange()">Sort</button>
 
 
 <table class="table table-dark table-striped">
     <thead>
         <tr>
+            <th>Id</th>
             <th>Name</th>
             <th>Gender</th>
             <th>Mobile</th>
@@ -25,6 +41,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let student of students; let i=index">
+            <td>{{student.id}}</td>
             <td>{{student.name}}</td>
             <td>{{student.gender}}</td>
             <td>{{student.mobile}}</td>

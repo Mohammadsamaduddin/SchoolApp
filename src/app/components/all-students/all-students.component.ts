@@ -10,6 +10,8 @@ export class AllStudentsComponent {
   public students: any = [];
   public pageNo: string = '';
   public limit: number = 0;
+  public column: string = '';
+  public order: string = '';
   constructor(private _studentService: StudentService) {
     _studentService.getStudents().subscribe(
       (data: any) => {
@@ -25,6 +27,7 @@ export class AllStudentsComponent {
     this._studentService.getPagedStudents(this.pageNo).subscribe(
       (data: any) => {
         this.students = data;
+        alert("yes");
       },
       (err: any) => {
         alert("internal server down");
@@ -32,5 +35,14 @@ export class AllStudentsComponent {
     )
   }
 
-
+  sortChange() {
+    this._studentService.getSortedStudents(this.column, this.order).subscribe(
+      (data: any) => {
+        this.students = data;
+      },
+      (err: any) => {
+        alert("internal server down");
+      }
+    )    
+  }
 }
