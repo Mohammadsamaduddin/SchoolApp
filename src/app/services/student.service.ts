@@ -16,4 +16,8 @@ export class StudentService {
   getStudents(): Observable<any> {
     return this._httpClient.get("https://62b9299dff109cd1dc8ca34f.mockapi.io/students");
   }
+
+  getPagedStudents(pageNo:string):Observable<any>{
+    return this._httpClient.get("https://62b9299dff109cd1dc8ca34f.mockapi.io/students?limit=5&page="+ pageNo);
+  }
 }
