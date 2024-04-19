@@ -9,7 +9,7 @@ import { StudentService } from 'src/app/services/student.service';
   styleUrls: ['./create-student.component.css']
 })
 export class CreateStudentComponent {
-  public create: string = '';
+  public create: any = [];
   public studentform: FormGroup = new FormGroup
     (
       {
@@ -28,7 +28,7 @@ export class CreateStudentComponent {
               pincode: new FormControl(null, [Validators.required, Validators.min(100000), Validators.max(999999)]),
             }
           ),
-        educations: new FormArray([]),
+        education: new FormArray([]),
         company: new FormGroup(
           {
             name: new FormControl(),
@@ -62,7 +62,7 @@ export class CreateStudentComponent {
 
 
   get educationFormArray() {
-    return this.studentform.get('educations') as FormArray;
+    return this.studentform.get('education') as FormArray;
   }
 
   addEducation() {
