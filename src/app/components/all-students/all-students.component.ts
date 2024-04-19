@@ -8,6 +8,8 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class AllStudentsComponent {
   public students: any = [];
+  public pageNo: string = '';
+  public limit: number = 0;
   constructor(private _studentService: StudentService) {
     _studentService.getStudents().subscribe(
       (data: any) => {
@@ -18,5 +20,17 @@ export class AllStudentsComponent {
       }
     )
   }
+
+  pageChange() {
+    this._studentService.getPagedStudents(this.pageNo).subscribe(
+      (data: any) => {
+        this.students = data;
+      },
+      (err: any) => {
+        alert("internal server down");
+      }
+    )
+  }
+
 
 }
