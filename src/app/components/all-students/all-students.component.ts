@@ -12,6 +12,15 @@ export class AllStudentsComponent {
   public limit: number = 0;
   public column: string = '';
   public order: string = '';
+  public term: string = '';
+  public queries: any = {
+    filter : '',
+    pageNo: 0,
+    limit: 7,
+    sortBy: '',
+    order: ''
+
+  }
   constructor(private _studentService: StudentService) {
     _studentService.getStudents().subscribe(
       (data: any) => {
@@ -43,6 +52,28 @@ export class AllStudentsComponent {
       (err: any) => {
         alert("internal server down");
       }
-    )    
+    )
+  }
+
+  filter() {
+    this._studentService.getFilteredStudents(this.term).subscribe(
+      (data: any) => {
+        this.students = data;
+      },
+      (err: any) => {
+        alert("server dowm");
+      }
+    )
+  }
+
+  load() {
+    this._studentService.loadData(this.queries).subscribe(
+      (data: any) => {
+        this.students = data;
+      },
+      (err: any) => {
+        alert("Website down");
+      }
+    )
   }
 }

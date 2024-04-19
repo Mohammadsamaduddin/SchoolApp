@@ -1,3 +1,5 @@
+<input type="text" placeholder="Search" [(ngModel)]="term" (keyup)="filter()">
+
 <label for="">Pagination:</label>
 <select [(ngModel)]="pageNo" (change)="pageChange()">
     <option value="1">1</option>
@@ -20,7 +22,31 @@
 </select>
 
 <button (click)="sortChange()">Sort</button>
+<hr>
 
+<input type="text" placeholder="May I help you" (keyup)="load()" [(ngModel)]="queries.filter">
+
+<label for="">Pagination:</label>
+<select [(ngModel)]="queries.pageNo" (change)="load()">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+</select>
+
+<label for="">Column:</label>
+<select [(ngModel)]="queries.sortBy">
+    <option value="name">Name</option>
+    <option value="email">Email</option>
+</select>
+
+<label for="">Order:</label>
+<select [(ngModel)]="queries.order">
+    <option value="asc">Ascending</option>
+    <option value="desc">Descending</option>
+</select>
+
+<button class="btn btn-success" (click)="load()">Sort</button>
 
 <table class="table table-dark table-striped">
     <thead>
