@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { max, min } from 'rxjs';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-create-student',
@@ -8,6 +9,7 @@ import { max, min } from 'rxjs';
   styleUrls: ['./create-student.component.css']
 })
 export class CreateStudentComponent {
+  public create: string = '';
   public studentform: FormGroup = new FormGroup
     (
       {
@@ -39,24 +41,26 @@ export class CreateStudentComponent {
         sourcetype: new FormControl(),
       }
     )
-  constructor() {
+  constructor(private _studentService: StudentService) {
     this.studentform.get('sourcetype')?.valueChanges.subscribe(
       (data: any) => {
 
         if (data == 'direct') {
           //add busFee
-          this.studentform.addControl('sourcefrom', new FormControl());          //remove hostelFee
+          this.studentform.addControl('sourcefrom', new FormControl());
           this.studentform.removeControl('referralname');
         }
         else {
-          //add hostelFee
           this.studentform.addControl("referralname", new FormControl());
-          //reomove busFee
           this.studentform.removeControl("sourcefrom");
         }
       }
     )
   }
+
+
+
+
   get educationFormArray() {
     return this.studentform.get('educations') as FormArray;
   }
@@ -78,7 +82,17 @@ export class CreateStudentComponent {
   }
 
   onSubmit() {
-    console.log(this.studentform.value);
+    // console.log(this.studentform.value);
+    this._studentService.createStudent(this.studentform.value).subscribe(
+      (data: any) => {
+        this.create = data;
+        alert('created successfully');
+        this.studentform.reset();
+      },
+      (err: any) => {
+        alert('not created');
+      }
+    )
   }
 }
 

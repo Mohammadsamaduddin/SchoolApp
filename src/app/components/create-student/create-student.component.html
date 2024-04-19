@@ -161,9 +161,9 @@
             <input type="text" formControlName="referralname">
             <br>
         </div>
+        <!-- [disabled]="studentform.invalid" -->
+        <button style="margin-top: 20px;" class="btn btn-info" (click)="onSubmit()">Submit</button>
 
-        <button [disabled]="studentform.invalid" style="margin-top: 20px;" class="btn btn-info"
-            (click)="onSubmit()">Submit</button>
 
     </form>
 </div>
