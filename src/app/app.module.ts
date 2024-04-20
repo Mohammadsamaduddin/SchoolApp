@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateStudentComponent } from './components/create-student/create-student.component';
 import { AllStudentsComponent } from './components/all-students/all-students.component';
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
+import { PercentagePipe } from './pipes/percentage.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { StudentDetailsComponent } from './components/student-details/student-de
     PagenotfoundComponent,
     CreateStudentComponent,
     AllStudentsComponent,
-    StudentDetailsComponent
+    StudentDetailsComponent,
+    PercentagePipe
   ],
   imports: [
     BrowserModule,
