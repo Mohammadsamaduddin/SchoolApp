@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { max, min } from 'rxjs';
 import { StudentService } from 'src/app/services/student.service';
 
@@ -10,6 +11,7 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class CreateStudentComponent {
   public create: any = [];
+  public id: any = '';
   public studentform: FormGroup = new FormGroup
     (
       {
@@ -41,58 +43,74 @@ export class CreateStudentComponent {
         sourcetype: new FormControl(),
       }
     )
-  constructor(private _studentService: StudentService) {
-    this.studentform.get('sourcetype')?.valueChanges.subscribe(
+  constructor(private _studentService: StudentService, private _activatedRoute: ActivatedRoute) {
+    _activatedRoute.params.subscribe(
       (data: any) => {
+        this.id = data.id;
+        _studentService.eachStudent(this.id).subscribe(
+          (data: any) => {
+            this.studentform.patchValue(data);
+          }
+          
+        )
 
-        if (data == 'direct') {
-          //add busFee
-          this.studentform.addControl('sourcefrom', new FormControl());
-          this.studentform.removeControl('referralname');
-        }
-        else {
-          this.studentform.addControl("referralname", new FormControl());
-          this.studentform.removeControl("sourcefrom");
-        }
       }
     )
+  
+
+
+    this.studentform.get('sourcetype')?.valueChanges.subscribe(
+    (data: any) => {
+
+      if (data == 'direct') {
+        //add busFee
+        this.studentform.addControl('sourcefrom', new FormControl());
+        this.studentform.removeControl('referralname');
+      }
+      else {
+        this.studentform.addControl("referralname", new FormControl());
+        this.studentform.removeControl("sourcefrom");
+      }
+    }
+  )
   }
 
 
 
 
   get educationFormArray() {
-    return this.studentform.get('education') as FormArray;
-  }
+  return this.studentform.get('education') as FormArray;
+}
 
-  addEducation() {
-    this.educationFormArray.push(
-      new FormGroup(
-        {
-          qualification: new FormControl(),
-          year: new FormControl(),
-          percentage: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(100)])
-        }
-      )
-    )
-  }
-
-  onDelete(i: number) {
-    this.educationFormArray.removeAt(i);
-  }
-
-  onSubmit() {
-    // console.log(this.studentform.value);
-    this._studentService.createStudent(this.studentform.value).subscribe(
-      (data: any) => {
-        this.create = data;
-        alert('created successfully');
-        this.studentform.reset();
-      },
-      (err: any) => {
-        alert('not created');
+addEducation() {
+  this.educationFormArray.push(
+    new FormGroup(
+      {
+        qualification: new FormControl(),
+        year: new FormControl(),
+        percentage: new FormControl(null, [Validators.required, Validators.min(1), Validators.max(100)])
       }
     )
-  }
+  )
+}
+
+onDelete(i: number) {
+  this.educationFormArray.removeAt(i);
+}
+
+
+onSubmit() {
+  // console.log(this.studentform.value);
+  this._studentService.createStudent(this.studentform.value).subscribe(
+    (data: any) => {
+      this.create = data;
+      alert('created successfully');
+      this.studentform.reset();
+    },
+    (err: any) => {
+      alert('not created');
+    }
+  )
+}
 }
 

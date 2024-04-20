@@ -75,7 +75,8 @@
             <td>{{student.email}}</td>
             <td>{{student.batch}}</td>
             <td>
-                <button class="btn btn-info" (click)="each(student.id)">View</button>
+                <button style="margin-right: 20px;" class="btn btn-info" (click)="each(student.id)">View</button>
+                <button class="btn btn-warning" (click)="edit(student.id)">Edit</button>
             </td>
             <!-- <td>{{student.address.city}}</td> -->
             <!-- <td>{{student.company.name}}</td> -->

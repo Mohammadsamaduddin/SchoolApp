@@ -82,4 +82,8 @@ export class AllStudentsComponent {
     this._router.navigateByUrl("/dashboard/student-details/" + id);
 
   }
+  
+  edit(id:any){
+    this._router.navigateByUrl("/dashboard/edit-details/"+id);
+  }
 }
