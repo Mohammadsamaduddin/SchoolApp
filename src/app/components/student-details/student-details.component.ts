@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -8,13 +8,22 @@ import { StudentService } from 'src/app/services/student.service';
   styleUrls: ['./student-details.component.css']
 })
 export class StudentDetailsComponent {
-  public student : any= {};
-  public id : any= '';
-  constructor(private _studentService:StudentService){}
-  getStudent(){
-    this._studentService.eachStudent(this.id).subscribe(
-      (data:any)=>{
-        this.student = data;
+  public student: any = {};
+  public id: any = '';
+  constructor(private _studentService: StudentService, private _activatedRoute: ActivatedRoute) {
+    _activatedRoute.params.subscribe(
+      (data: any) => {
+        this.id = data.id
+        //api call
+        _studentService.eachStudent(this.id).subscribe(
+          (data: any) => {
+            this.student = data;
+            alert("viweing ");
+          },
+          (err: any) => {
+            alert('sorry');
+          }
+        )
       }
     )
   }
