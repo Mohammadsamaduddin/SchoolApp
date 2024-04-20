@@ -100,17 +100,31 @@ onDelete(i: number) {
 
 
 onSubmit() {
+  if(this.id){
+    this._studentService.updateStudent(this.id,this.studentform.value).subscribe(
+      (data:any)=>{
+        this.studentform.reset();
+        alert("edited");
+      },
+      (err:any)=>{
+        alert("not edited");
+      }
+    )
+  }
+  else{
+    this._studentService.createStudent(this.studentform.value).subscribe(
+      (data: any) => {
+        this.create = data;
+        alert('created successfully');
+        this.studentform.reset();
+      },
+      (err: any) => {
+        alert('not created');
+      }
+    )
+  }
   // console.log(this.studentform.value);
-  this._studentService.createStudent(this.studentform.value).subscribe(
-    (data: any) => {
-      this.create = data;
-      alert('created successfully');
-      this.studentform.reset();
-    },
-    (err: any) => {
-      alert('not created');
-    }
-  )
+  
 }
 }
 
