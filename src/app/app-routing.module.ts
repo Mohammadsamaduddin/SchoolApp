@@ -10,12 +10,14 @@ import { StudentDetailsComponent } from './components/student-details/student-de
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'student-details', component: StudentDetailsComponent },
 
   {
     path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent, children: [
       { path: 'create-students', component: CreateStudentComponent },
-      { path: 'all-students', component: AllStudentsComponent }
+      { path: 'all-students', component: AllStudentsComponent },
+      { path: 'student-details/:id', component: StudentDetailsComponent }
+
+
     ]
 
   },
