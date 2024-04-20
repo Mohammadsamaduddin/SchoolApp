@@ -57,6 +57,7 @@
             <th>Mobile</th>
             <th>Email</th>
             <th>Batch</th>
+            <th>Actions</th>
             <!-- <th>City</th> -->
             <!-- <th>Company Name</th> -->
             <!-- <th>Source Type</th> -->
@@ -73,6 +74,9 @@
             <td>{{student.mobile}}</td>
             <td>{{student.email}}</td>
             <td>{{student.batch}}</td>
+            <td>
+                <button class="btn btn-info" (click)="each(student.id)">View</button>
+            </td>
             <!-- <td>{{student.address.city}}</td> -->
             <!-- <td>{{student.company.name}}</td> -->
             <!-- <td>{{student.sourcetype}}</td> -->

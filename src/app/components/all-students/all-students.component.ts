@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -13,15 +14,15 @@ export class AllStudentsComponent {
   public column: string = '';
   public order: string = '';
   public term: string = '';
+  public id: string = '';
   public queries: any = {
-    filter : '',
+    filter: '',
     pageNo: 0,
     limit: 7,
     sortBy: '',
     order: ''
-
   }
-  constructor(private _studentService: StudentService) {
+  constructor(private _studentService: StudentService, private _router: Router) {
     _studentService.getStudents().subscribe(
       (data: any) => {
         this.students = data;
@@ -75,5 +76,10 @@ export class AllStudentsComponent {
         alert("Website down");
       }
     )
+  }
+
+  each(id: any) {
+    this._router.navigateByUrl("/dashboard/student-details/" + id);
+
   }
 }

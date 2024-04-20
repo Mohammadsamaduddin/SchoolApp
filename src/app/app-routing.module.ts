@@ -6,14 +6,18 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { AuthGuard } from './guards/auth.guard';
 import { CreateStudentComponent } from './components/create-student/create-student.component';
 import { AllStudentsComponent } from './components/all-students/all-students.component';
+import { StudentDetailsComponent } from './components/student-details/student-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'student-details', component: StudentDetailsComponent },
+
   {
     path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent, children: [
       { path: 'create-students', component: CreateStudentComponent },
       { path: 'all-students', component: AllStudentsComponent }
     ]
+
   },
   { path: '', component: LoginComponent },
   { path: '**', component: PagenotfoundComponent }
